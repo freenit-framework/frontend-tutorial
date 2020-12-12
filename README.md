@@ -5,3 +5,4 @@ Once [Freenit Designer](https://designer.meka.rs/) produces .json file, frontend
 [![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/03/screenshot.png)](https://www.youtube.com/watch?v=TM-qwwkRfgw&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=3)
 
 [Previous: First Design](https://github.com/freenit-framework/frontend-tutorial/tree/step/02)
+[Next: Rendering Variables and Mapping Arrays](https://github.com/freenit-framework/frontend-tutorial/tree/step/04)
