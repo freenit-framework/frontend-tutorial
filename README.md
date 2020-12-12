@@ -1,7 +1,7 @@
-# From Design to First Page
+# Rendering Variables and Mapping Arrays
 
-Once [Freenit Designer](https://designer.meka.rs/) produces .json file, frontend development can take over. This tutorial shows how to export page from Designer and how to create [Freenit Frontend](https://github.com/freenit-framework/frontend-startkit) repository to work with.
+As data is going to be received from backend in JSON format, is it important to know how to render that data. Moreover, how to render simple variables, arrays and objects and arrays of objects (and other arrays).
 
-[![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/03/screenshot.png)](https://www.youtube.com/watch?v=TM-qwwkRfgw&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=3)
+[![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/03/screenshot.png)](https://www.youtube.com/watch?v=ElMXqTWTYbM&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=4)
 
-[Previous: First Design](https://github.com/freenit-framework/frontend-tutorial/tree/step/02)
+[Previous: From Design to First Page](https://github.com/freenit-framework/frontend-tutorial/tree/step/03)
