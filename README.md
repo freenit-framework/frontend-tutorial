@@ -1,7 +1,6 @@
-# Rendering Variables and Mapping Arrays
+# Blog Store and Why Do We Need It
+Once data in the store is changed, render needs to be notified so it puts the updated data on the browser/screen.
 
-As data is going to be received from backend in JSON format, is it important to know how to render that data. Moreover, how to render simple variables, arrays and objects and arrays of objects (and other arrays).
+[![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/05/screenshot.png)](https://www.youtube.com/watch?v=Dl49yvC-98s&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=5)
 
-[![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/03/screenshot.png)](https://www.youtube.com/watch?v=ElMXqTWTYbM&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=4)
-
-[Previous: From Design to First Page](https://github.com/freenit-framework/frontend-tutorial/tree/step/03)
+[Previous: Rendering Variables and Mapping Arrays](https://github.com/freenit-framework/frontend-tutorial/tree/step/04)
