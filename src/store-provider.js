@@ -11,6 +11,7 @@ import {
   EmptyTemplate,
 } from 'freenit'
 import { withRouter } from 'react-router-dom'
+import Blog from 'pages/blog'
 import Landing from 'pages/landing'
 
 
@@ -20,6 +21,10 @@ export const data = {}
 const Provider = (props) => {
   const store = {
     auth: new Auth.store(useState(Auth.initial.detail)),
+    blog: new Blog.store(
+      useState(Blog.initial.detail),
+      useState(Blog.initial.list),
+    ),
     history: props.history,
     landing: new Landing.store(useState(Landing.initial.detail)),
     notification: new EmptyTemplate.store(

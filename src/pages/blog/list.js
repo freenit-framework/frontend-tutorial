@@ -1,41 +1,38 @@
 import React from 'react'
 import {
-  Paper,
-  Button,
   Avatar,
+  Button,
+  Paper,
 } from '@material-ui/core'
 import { withStore } from 'freenit'
 
 import Template from 'templates/default/detail'
 
 
-const blogList = {
-  data: [
-    {
-      id: 1,
-      title: 'Monday',
-      content: 'Blah Blah',
-    },
-    {
-      id: 2,
-      title: 'Some title',
-      content: 'Blah Blah',
-    },
-    {
-      id: 3,
-      title: 'Hey',
-      content: 'Blah Blah',
-    },
-  ],
-  pages: 3,
-  total: 16,
-}
+let id = 10
 
 
 class BlogList extends React.Component {
+  addBlogPost = () => {
+    ++id
+    const blogPost = {
+      id,
+      title: 'Added Blog Post',
+      content: 'Generated once, abused all over the place',
+    }
+    const { blog } = this.props.store
+    blog.setList({
+      ...blog.list,
+      data: [
+        ...blog.list.data,
+        blogPost,
+      ]
+    })
+  }
+
   render() {
-    console.log(this.props.store.resolution.detail.width)
-    const blogListUi = blogList.data.map(blog => {
+    const { blog } = this.props.store
+    const blogListUi = blog.list.data.map(blog => {
       return (
         <Paper key={blog.id} style={{ minHeight: 30, display: "flex" }}>
           <div style={{ height: 120, width: 120, backgroundImage: "url(\"http://4.bp.blogspot.com/-v3JuijKnOrI/UBkuXara48I/AAAAAAAAF6k/sErkKUvi2oo/s1600/Beer_Wallpaper+(49).jpg\")", backgroundSize: "100% 100%", marginRight: 20 }} />
@@ -55,6 +52,9 @@ class BlogList extends React.Component {
         <h1 style={{ marginLeft: 20 }}>
           Straight from the Hackers' Kitchen
         </h1>
+        <Button variant="outlined" onClick={this.addBlogPost}>
+          Add Blog Post
+        </Button>
         <div style={{ padding: 20, display: "grid", gridTemplateColumns: "repeat(3, auto)", gridGap: 5 }}>
           {blogListUi}
         </div>
