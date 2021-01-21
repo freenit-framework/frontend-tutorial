@@ -6,16 +6,11 @@ export default class BlogStore {
     this.setList = list[1]
   }
 
-  fetchAll = async (page = 0, perpage = 10) => {
+  fetchAll = async (Page = 0, PerPage = 9) => {
     try {
       const response = await window.rest.get(
         '/blogs',
-        {
-          headers: {
-            Page: page,
-            PerPage: perpage,
-          },
-        },
+        { headers: { Page, PerPage } },
       )
       const result = {
         ...response.data,

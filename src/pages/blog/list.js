@@ -4,30 +4,27 @@ import {
   Button,
   Paper,
 } from '@material-ui/core'
-import { withStore } from 'freenit'
+import {
+  errors,
+  withStore,
+} from 'freenit'
 
 import Template from 'templates/default/detail'
 
 
-let id = 10
-
-
 class BlogList extends React.Component {
-  addBlogPost = () => {
-    ++id
-    const blogPost = {
-      id,
-      title: 'Added Blog Post',
-      content: 'Generated once, abused all over the place',
+  constructor(props) {
+    super(props)
+    this.fetch()
+  }
+
+  fetch = async () => {
+    const { blog, notification } = this.props.store
+    const result = await blog.fetchAll()
+    if (!result.ok) {
+      const error = errors(result)
+      notification.show(error.message)
     }
-    const { blog } = this.props.store
-    blog.setList({
-      ...blog.list,
-      data: [
-        ...blog.list.data,
-        blogPost,
-      ]
-    })
   }
 
   render() {
@@ -35,7 +32,7 @@ class BlogList extends React.Component {
     const blogListUi = blog.list.data.map(blog => {
       return (
         <Paper key={blog.id} style={{ minHeight: 30, display: "flex" }}>
-          <div style={{ height: 120, width: 120, backgroundImage: "url(\"http://4.bp.blogspot.com/-v3JuijKnOrI/UBkuXara48I/AAAAAAAAF6k/sErkKUvi2oo/s1600/Beer_Wallpaper+(49).jpg\")", backgroundSize: "100% 100%", marginRight: 20 }} />
+          <div style={{ height: 120, width: 120, backgroundImage: `url("${blog.image}")`, backgroundSize: "100% 100%", marginRight: 20 }} />
           <div>
             <h2>
               {blog.title}
@@ -52,9 +49,6 @@ class BlogList extends React.Component {
         <h1 style={{ marginLeft: 20 }}>
           Straight from the Hackers' Kitchen
         </h1>
-        <Button variant="outlined" onClick={this.addBlogPost}>
-          Add Blog Post
-        </Button>
         <div style={{ padding: 20, display: "grid", gridTemplateColumns: "repeat(3, auto)", gridGap: 5 }}>
           {blogListUi}
         </div>
