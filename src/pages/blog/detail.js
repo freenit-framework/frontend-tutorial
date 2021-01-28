@@ -1,9 +1,29 @@
 import React from 'react'
+import
+{
+  errors,
+  withStore,
+} from 'freenit'
 
 import Template from 'templates/default/detail'
 
 
 class BlogDetail extends React.Component {
+  constructor(props) {
+    super(props)
+    this.fetch()
+  }
+
+  fetch = async () => {
+    const { blog, notification } = this.props.store
+    const { slug } = this.props.match.params
+    const result = await blog.fetch(slug)
+    if (!result.ok) {
+      const error = errors(result)
+      notification.show(error.message)
+    }
+  }
+
   render() {
     return (
       <Template>
@@ -28,4 +48,4 @@ class BlogDetail extends React.Component {
 }
 
 
-export default BlogDetail
+export default withStore(BlogDetail)

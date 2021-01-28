@@ -1,5 +1,10 @@
 const initial = {
-  detail: {},
+  detail: {
+    id: 0,
+    title: '',
+    content: '',
+    slug: '',
+  },
   list: {
     data: [],
     pages: 0,
