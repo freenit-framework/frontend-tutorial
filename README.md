@@ -5,4 +5,4 @@ From backend to store to render is the usual path of the data.
 
 [Previous: Blog Store Details and How Does It Work](https://github.com/freenit-framework/frontend-tutorial/tree/step/06)
 
-[Next: Blog Store Details and How Does It Work](https://github.com/freenit-framework/frontend-tutorial/tree/step/08)
+[Next: Pagination](https://github.com/freenit-framework/frontend-tutorial/tree/step/08)
