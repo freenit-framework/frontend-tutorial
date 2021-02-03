@@ -1,5 +1,5 @@
-# Blog Store Details and How It Works
-Once data in the store is changed, render needs to be notified so it puts the updated data on the browser/screen.
+# Blog Store Details and How Does It Work
+There are 5 main methods in the store implementation: fetchAll, fetch, create, edit and delete. These are explained in depth.
 
 [![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/06/screenshot.png)](https://www.youtube.com/watch?v=tNNJfedl7G4&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=6)
 
