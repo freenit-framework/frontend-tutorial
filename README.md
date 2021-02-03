@@ -5,4 +5,4 @@ There are 5 main methods in the store implementation: fetchAll, fetch, create, e
 
 [Previous: Blog Store and Why Do We Need It](https://github.com/freenit-framework/frontend-tutorial/tree/step/05)
 
-[Next: Blog Store and Why Do We Need It](https://github.com/freenit-framework/frontend-tutorial/tree/step/07)
+[Next: Fetching and Displaying Data](https://github.com/freenit-framework/frontend-tutorial/tree/step/07)
