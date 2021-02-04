@@ -9,3 +9,4 @@ Tutorial is divided into multiple steps
 6. [Blog Store Details and How Does It Work](https://github.com/freenit-framework/frontend-tutorial/tree/step/06)
 7. [Fetching and Displaying Data](https://github.com/freenit-framework/frontend-tutorial/tree/step/07)
 8. [Pagination](https://github.com/freenit-framework/frontend-tutorial/tree/step/08)
+9. [Blog Detail](https://github.com/freenit-framework/frontend-tutorial/tree/step/09)
