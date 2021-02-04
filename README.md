@@ -1,6 +1,6 @@
-# Pagination
-Getting data in sets of 9, instead of whole set of data at once.
+# Blog Detail
+Implementing full CRUD blog model: get, create, edit.
 
-[![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/08/screenshot.png)](https://www.youtube.com/watch?v=8MGKH9L_sVA&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=8)
+[![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/09/screenshot.png)](https://www.youtube.com/watch?v=0Rxglbt-6iI&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=9)
 
-[Previous: Fetching and Displaying Data](https://github.com/freenit-framework/frontend-tutorial/tree/step/07)
+[Previous: Pagination](https://github.com/freenit-framework/frontend-tutorial/tree/step/08)

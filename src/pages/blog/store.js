@@ -26,9 +26,9 @@ export default class BlogStore {
     }
   }
 
-  fetch = async (id) => {
+  fetch = async (slug) => {
     try {
-      const response = await window.rest.get(`/blogs/${id}`)
+      const response = await window.rest.get(`/blogs/${slug}`)
       const result = {
         ...response.data,
         ok: true
@@ -43,9 +43,9 @@ export default class BlogStore {
     }
   }
 
-  edit = async (id, data) => {
+  edit = async (slug, data) => {
     try {
-      const response = await window.rest.patch(`/blogs/${id}`, data)
+      const response = await window.rest.patch(`/blogs/${slug}`, data)
       const result = {
         ...response.data,
         ok: true
@@ -77,9 +77,9 @@ export default class BlogStore {
     }
   }
 
-  remove = async (id) => {
+  remove = async (slug) => {
     try {
-      const response = await window.rest.delete(`/blogs/${id}`)
+      const response = await window.rest.delete(`/blogs/${slug}`)
       const result = {
         ...response.data,
         ok: true
