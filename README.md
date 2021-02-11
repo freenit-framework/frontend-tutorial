@@ -10,3 +10,4 @@ Tutorial is divided into multiple steps
 7. [Fetching and Displaying Data](https://github.com/freenit-framework/frontend-tutorial/tree/step/07)
 8. [Pagination](https://github.com/freenit-framework/frontend-tutorial/tree/step/08)
 9. [Blog Detail](https://github.com/freenit-framework/frontend-tutorial/tree/step/09)
+10. [Create Blog Post](https://github.com/freenit-framework/frontend-tutorial/tree/step/10)
