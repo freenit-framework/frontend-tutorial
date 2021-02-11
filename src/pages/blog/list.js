@@ -3,17 +3,30 @@ import { Link } from 'react-router-dom'
 import {
   Avatar,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Fab,
   Paper,
+  TextField,
 } from '@material-ui/core'
 import {
   errors,
   withStore,
 } from 'freenit'
+import AddIcon from '@material-ui/icons/Add'
 
 import Template from 'templates/default/detail'
 
 
 class BlogList extends React.Component {
+  state = {
+    create: false,
+    title: '',
+  }
+
   constructor(props) {
     super(props)
     this.fetch(props.match.params.page)
@@ -52,8 +65,38 @@ class BlogList extends React.Component {
     }
   }
 
+  openCreate = async () => {
+    this.setState({ create: true })
+  }
+
+  closeCreate = async () => {
+    this.setState({ create: false, title: '' })
+  }
+
+  editTitle = (event) => {
+    this.setState({ title: event.target.value })
+  }
+
+  createPost = async () => {
+    const data = {
+      title: this.state.title,
+      content: this.state.title,
+      published: true,
+      image: 'https://tilda.center/static/images/logo.png',
+    }
+    const { blog, history, notification } = this.props.store
+    const response = await blog.create(data)
+    if (!response.ok) {
+      const error = errors(response)
+      notification.show(error.message)
+    } else {
+      history.push(`/blog/${response.slug}`)
+    }
+    this.closeCreate()
+  }
+
   render() {
-    const { blog } = this.props.store
+    const { auth, blog } = this.props.store
     const { page } = this.props.match.params
     const currentPage = page ? Number(page) : 0
     const blogListUi = blog.list.data.map(blog => {
@@ -73,11 +116,23 @@ class BlogList extends React.Component {
         </Link>
       )
     })
+    const createUI = auth.detail.ok
+      ? (
+        <Fab
+          color="primary"
+          aria-label="add"
+          onClick={this.openCreate}
+        >
+          <AddIcon />
+        </Fab>
+      )
+      : null
     return (
       <Template>
         <h1 style={{ marginLeft: 20 }}>
           Straight from the Hackers' Kitchen
         </h1>
+        {createUI}
         <div style={{ padding: 20, display: "grid", gridTemplateColumns: "repeat(3, auto)", gridGap: 5 }}>
           {blogListUi}
         </div>
@@ -100,6 +155,32 @@ class BlogList extends React.Component {
             &gt;
           </Button>
         </div>
+        <Dialog open={this.state.create} onClose={this.closeCreate}>
+          <DialogTitle id="form-dialog-title">Create Blog Post</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Enter new name of the title
+            </DialogContentText>
+            <TextField
+              autoFocus
+              required
+              margin="dense"
+              id="title"
+              label="Title"
+              fullWidth
+              onChange={this.editTitle}
+              value={this.state.title}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.closeCreate} color="secondary">
+              Cancel
+            </Button>
+            <Button onClick={this.createPost} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Template>
     )
   }

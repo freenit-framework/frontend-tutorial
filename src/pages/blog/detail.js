@@ -19,7 +19,9 @@ import Template from 'templates/default/detail'
 class BlogDetail extends React.Component {
   state = {
     editTitle: false,
+    editImage: false,
     title: '',
+    image: '',
   }
 
   constructor(props) {
@@ -83,6 +85,36 @@ class BlogDetail extends React.Component {
     this.setState({ title: event.target.value })
   }
 
+  openImageEdit = () => {
+    this.setState({ editImage: true })
+  }
+
+  closeImageEdit = () => {
+    this.setState({
+      editImage: false,
+      image: '',
+    })
+  }
+
+  handleImageChange = (event) => {
+    this.setState({ image: event.target.value })
+  }
+
+  editImage = async () => {
+    const { blog, notification } = this.props.store
+    if (this.state.image !== '') {
+      const { slug } = this.props.match.params
+      const result = await blog.edit(slug, { image: this.state.image })
+      if (!result.ok) {
+        const error = errors(result)
+        notification.show(error.message)
+      }
+      this.closeImageEdit()
+    } else {
+      notification.show('Image URL can not be empty!')
+    }
+  }
+
   render() {
     const blog = this.props.store.blog.detail
     const { auth } = this.props.store
@@ -99,10 +131,10 @@ class BlogDetail extends React.Component {
     const editUI = auth.detail.ok
       ? (
         <Dialog open={this.state.editTitle} onClose={this.hideEditTitle}>
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+          <DialogTitle>Edit Title</DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Enter new name of the title
+              Enter new blog post title
             </DialogContentText>
             <TextField
               autoFocus
@@ -126,6 +158,36 @@ class BlogDetail extends React.Component {
         </Dialog>
       )
       : null
+    const imageUI = auth.detail.ok
+      ? (
+        <Dialog open={this.state.editImage} onClose={this.closeImageEdit}>
+          <DialogTitle>Edit Image</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Enter new image URL
+            </DialogContentText>
+            <TextField
+              autoFocus
+              required
+              margin="dense"
+              id="image"
+              label="Image"
+              fullWidth
+              onChange={this.handleImageChange}
+              value={this.state.image}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.closeImageEdit} color="secondary">
+              Cancel
+            </Button>
+            <Button onClick={this.editImage} color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+      )
+      : null
     return (
       <Template>
         <div style={{ padding: 20 }}>
@@ -137,8 +199,14 @@ class BlogDetail extends React.Component {
               {blog.title}
             </h1>
             {deleteUI}
+            {imageUI}
           </div>
-          <img alt="something" style={{ height: 200, float: "left", marginRight: 10 }} src={blog.image} />
+          <img
+            alt="something"
+            style={{ height: 200, float: "left", marginRight: 10 }}
+            src={blog.image}
+            onClick={this.openImageEdit}
+          />
           <div>
             {blog.content}
           </div>

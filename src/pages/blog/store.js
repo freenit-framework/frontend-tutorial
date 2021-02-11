@@ -67,7 +67,16 @@ export default class BlogStore {
         ...response.data,
         ok: true
       }
+      const listResult = {
+        ...this.list,
+        data: [
+          ...this.list.data,
+          response.data,
+        ],
+        total: this.list.total + 1,
+      }
       this.setDetail(result)
+      this.setList(listResult)
       return result
     } catch (error) {
       return {
