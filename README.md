@@ -1,6 +1,6 @@
-# Blog Detail
-Implementing full CRUD blog model: get, create, edit.
+# Create Blog Post
+The final in method in CRUD model
 
-[![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/09/screenshot.png)](https://www.youtube.com/watch?v=0Rxglbt-6iI&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=9)
+[![Video Tutorial](https://raw.githubusercontent.com/freenit-framework/frontend-tutorial/step/10/screenshot.png)](https://www.youtube.com/watch?v=xNThw3MwiOo&list=PLpeJ1COhO5ak9X3UE85mlFZrrIxiPynKy&index=10)
 
-[Previous: Pagination](https://github.com/freenit-framework/frontend-tutorial/tree/step/08)
+[Previous: Blog Detail](https://github.com/freenit-framework/frontend-tutorial/tree/step/09)
