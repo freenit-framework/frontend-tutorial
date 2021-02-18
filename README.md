@@ -1,4 +1,4 @@
-# Blog Post Editing and Markdown
+# Blog Post and Markdown
 MarkDown is format which allows styling text and adding images and links, which
 makes it perfect for blog post writing.
 
