@@ -12,14 +12,18 @@ import {
   DialogActions,
   TextField,
 } from '@material-ui/core'
+import ReactMarkdown from 'react-markdown'
 
 import Template from 'templates/default/detail'
+
+import styles from './styles'
 
 
 class BlogDetail extends React.Component {
   state = {
     editTitle: false,
     editImage: false,
+    editContent: false,
     title: '',
     image: '',
   }
@@ -49,6 +53,43 @@ class BlogDetail extends React.Component {
     } else {
       history.push('/blogs')
     }
+  }
+
+  showEditContent = () => {
+    const { blog } = this.props.store
+    this.setState({
+      editContent: true,
+      content: blog.detail.content,
+    })
+  }
+
+  hideEditContent = () => {
+    this.setState({
+      editContent: false,
+      content: '',
+    })
+  }
+
+  cancelEditContent = () => {
+    const { blog } = this.props.store
+    blog.setDetail({
+      ...blog.detail,
+      content: this.state.content,
+    })
+    this.hideEditContent()
+  }
+
+  changeContentForever = async () => {
+    const { blog, notification } = this.props.store
+    const response = await blog.edit(
+      this.props.match.params.slug,
+      { content: blog.detail.content },
+    )
+    if (!response.ok) {
+      const error = errors(response)
+      notification.show(error.message)
+    }
+    this.hideEditContent()
   }
 
   showEditTitle = () => {
@@ -115,8 +156,14 @@ class BlogDetail extends React.Component {
     }
   }
 
+  changeContent = (event) => {
+    const { blog } = this.props.store
+    blog.setDetail({ ...blog.detail, content: event.target.value })
+  }
+
   render() {
-    const blog = this.props.store.blog.detail
+    const blogStore = this.props.store.blog
+    const blog = blogStore.detail
     const { auth } = this.props.store
     const deleteUI = auth.detail.ok
       ? (
@@ -188,10 +235,37 @@ class BlogDetail extends React.Component {
         </Dialog>
       )
       : null
+    const contentUI = this.state.editContent
+      ? (
+        <div>
+          <TextField
+            multiline
+            fullWidth
+            value={blog.content}
+            onChange={this.changeContent}
+          />
+          <Button onClick={this.cancelEditContent} color="secondary">
+            Cancel
+          </Button>
+          <Button onClick={this.changeContentForever} color="primary">
+            OK
+          </Button>
+          <ReactMarkdown>
+            {blog.content}
+          </ReactMarkdown>
+        </div>
+      )
+      : (
+        <div onClick={this.showEditContent}>
+          <ReactMarkdown>
+            {blog.content}
+          </ReactMarkdown>
+        </div>
+      )
     return (
       <Template>
         <div style={{ padding: 20 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={styles.title}>
             <h1
               style={{ textAlign: "center", margin: 1 }}
               onClick={this.showEditTitle}
@@ -203,13 +277,11 @@ class BlogDetail extends React.Component {
           </div>
           <img
             alt="something"
-            style={{ height: 200, float: "left", marginRight: 10 }}
+            style={styles.image}
             src={blog.image}
             onClick={this.openImageEdit}
           />
-          <div>
-            {blog.content}
-          </div>
+          {contentUI}
         </div>
         {editUI}
       </Template>

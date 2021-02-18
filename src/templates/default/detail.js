@@ -23,6 +23,7 @@ import ProfileIcon from '@material-ui/icons/AccountCircle'
 import MenuIcon from '@material-ui/icons/Menu'
 import RoleIcon from '@material-ui/icons/People'
 import UserIcon from '@material-ui/icons/PeopleOutline'
+import BlogIcon from '@material-ui/icons/LibraryBooks'
 
 import styles from './styles'
 
@@ -172,6 +173,14 @@ class Template extends React.Component {
             >
               {AuthMenu}
               {LoggingMenu}
+              <Link to="/blogs">
+                <MenuItem>
+                  <ListItemIcon>
+                    <BlogIcon />
+                  </ListItemIcon>
+                  Blog Posts
+                </MenuItem>
+              </Link>
             </div>
           </Drawer>
         </EmptyTemplate.detail>

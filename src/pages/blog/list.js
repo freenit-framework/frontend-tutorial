@@ -12,6 +12,7 @@ import {
   Paper,
   TextField,
 } from '@material-ui/core'
+import ReactMarkdown from 'react-markdown'
 import {
   errors,
   withStore,
@@ -109,7 +110,9 @@ class BlogList extends React.Component {
                 {blog.title}
               </h2>
               <p>
-                {blog.content}
+                <ReactMarkdown>
+                  {blog.content}
+                </ReactMarkdown>
               </p>
             </div>
           </Paper>
